@@ -36,9 +36,11 @@ export function Cursor() {
       y.set(e.clientY);
     };
     const onOver = (e: PointerEvent) => {
-      const target = (e.target as HTMLElement).closest<HTMLElement>(
-        "a, button, [data-cursor]",
-      );
+      const el = e.target as HTMLElement;
+      // Opt a subtree out of the grow-on-hover effect with data-cursor-plain.
+      const target = el.closest<HTMLElement>("[data-cursor-plain]")
+        ? null
+        : el.closest<HTMLElement>("a, button, [data-cursor]");
       setHovering(Boolean(target));
       setLabel(target?.dataset.cursor || null);
     };

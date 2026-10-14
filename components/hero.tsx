@@ -149,9 +149,8 @@ export function Hero() {
               transition={{ delay: d + 0.7, duration: 0.8, ease }}
             >
               <li>
-                Kolkata
-                <PinIcon className="ml-1 inline-block size-3 align-[-0.15em] text-coral" />
-                , 22 Yrs
+                <PinIcon className="mr-1 inline-block size-3 align-[-0.15em] text-coral" />
+                Kolkata, 22 Yrs Old
               </li>
               <li>Based in {site.location}</li>
             </motion.ul>
@@ -173,7 +172,10 @@ export function Hero() {
                 animate={{ scaleY: 1 }}
                 transition={{ delay: d + 0.5, duration: 1, ease }}
               />
-              <ul className="font-heading text-2xl leading-[1.15] md:text-[2.4vw] font-semibold tracking-[-0.03em] text-paper">
+              <ul
+                data-cursor-plain
+                className="font-heading text-2xl leading-[1.15] md:text-[2.4vw] font-semibold tracking-[-0.03em] text-paper"
+              >
                 {disciplines.map((item, i) => (
                   <li key={item} className="overflow-hidden">
                     <motion.a

@@ -9,7 +9,7 @@ export function Services() {
     >
       <SectionLabel index="01" label="What I do" />
 
-      <h2 className="mb-12 font-display text-[13vw] leading-[0.9] uppercase md:mb-20 md:text-[8vw]">
+      <h2 className="mb-12 font-display text-[13vw] leading-none uppercase md:mb-20 md:text-[8vw]">
         <MaskText>I capture,</MaskText>
         <MaskText delay={0.1}>
           <span className="text-outline">I create</span>
