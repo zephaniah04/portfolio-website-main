@@ -112,7 +112,7 @@ export function Hero() {
 
       <motion.div
         style={{ y: contentY, opacity: fade }}
-        className="relative z-10 flex flex-1 flex-col justify-between px-4 pt-24 pb-6 md:px-8 md:pt-28 md:pb-8"
+        className="relative z-10 flex flex-1 flex-col justify-between px-4 pt-24 pb-24 md:px-8 md:pt-28 md:pb-20"
       >
         {/* Top row: name block + discipline list */}
         <div className="grid gap-10 md:grid-cols-2">
@@ -182,7 +182,7 @@ export function Hero() {
         </div>
 
         {/* Big statement */}
-        <div className="mt-10 mb-8 flex items-end justify-between gap-6 md:mt-16 md:mb-14">
+        <div className="mt-10 flex items-end justify-between gap-6 md:mt-12">
           <p
             aria-hidden
             className="font-heading text-[10.5vw] leading-[0.88] font-bold tracking-[-0.055em] uppercase md:text-[8vw]"
@@ -204,10 +204,7 @@ export function Hero() {
                 </motion.span>
               </motion.span>
             </Line>
-            <Line
-              delay={d + 0.45}
-              className="bg-linear-to-b from-coral via-[#ffd9cc] to-paper bg-clip-text text-transparent"
-            >
+            <Line delay={d + 0.45} className="text-paper">
               Photographer &amp;
             </Line>
             <Line delay={d + 0.55} className="text-paper">

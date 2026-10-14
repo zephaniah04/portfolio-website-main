@@ -59,7 +59,7 @@ public/images/        # hero.jpg (landscape bg), profile.jpg, work/*.jpg (placeh
 
 - Background is near-black `ink` (#050505), and text is off-white `paper` (#f4f4ef).
 - Accents are `lime` (#d4ff3a, primary), `orange` (#ff5a1f), `pink` (#ff3d9a) and `blue` (#3d7bff). Use them as Tailwind colors (`bg-lime`, `text-orange`, …), never as raw hex values in components.
-- `coral` (#ff6f5e) is a light reddish accent used only on the hero (`components/hero.tsx`), to match the reference site's red headline. Don't spread it to other sections — they stay on lime.
+- `coral` (#f94137) is the red accent used only on the hero (`components/hero.tsx`), to match the reference site's red headline. Don't spread it to other sections — they stay on lime.
 - The hero background has an interactive wireframe grid (`components/interactive-grid.tsx`) that ripples away from the pointer and flashes a short word near it on fine-pointer devices. It's a plain `<canvas>` driven by `requestAnimationFrame`, not Motion, so it can redraw every frame without React re-renders. Edit the `WORDS` list there to change the prompts.
 - Headlines use `font-display` in uppercase, sized in `vw` so they span the viewport. Labels use `font-mono text-[11px] tracking-widest uppercase`.
 - Hero and header headings use `font-heading` (Inter Tight, semibold/bold, tight negative tracking).

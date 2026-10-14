@@ -86,13 +86,6 @@ export function ContactFooter() {
           Back to top ↑
         </button>
       </div>
-
-      <p
-        aria-hidden
-        className="pointer-events-none px-2 pb-2 text-center font-display text-[21vw] leading-[0.8] text-ink uppercase select-none"
-      >
-        Raika
-      </p>
     </motion.footer>
   );
 }

@@ -11,7 +11,7 @@
   --color-orange: #ff5a1f;
   --color-pink: #ff3d9a;
   --color-blue: #3d7bff;
-  --color-coral: #ff6f5e; /* light reddish accent used only on the hero */
+  --color-coral: #f94137; /* light reddish accent used only on the hero */
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -103,6 +103,6 @@ html.lenis body {
 
 /* Hero grid overlay: the interactive canvas grid fades out toward the edges */
 .hero-grid {
-  mask-image: radial-gradient(ellipse 70% 80% at 55% 45%, black 40%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 55% 45%, black 40%, transparent 85%);
+  mask-image: radial-gradient(ellipse 95% 100% at 55% 45%, black 55%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 100% at 55% 45%, black 55%, transparent 95%);
 }

@@ -5,7 +5,7 @@ export const site = {
   firstName: "Zephaniah",
   lastName: "Raika",
   role: "Creative Photographer & Amateur Videographer",
-  email: "hello@zephaniahraika.com",
+  email: "raikazephaniah44@gmail.com",
   location: "India",
   // Replace these files with your own photos.
   heroImage: "/images/hero.jpg", // full-screen first page background, landscape

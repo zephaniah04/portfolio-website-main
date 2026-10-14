@@ -4,23 +4,24 @@ import { useEffect, useRef } from "react";
 
 // Short prompts that flash near the cursor as it moves, like the reference site.
 const WORDS = [
-  "Work Hard",
-  "Chase Light",
-  "Create",
-  "Shoot Raw",
-  "Stay Focused",
-  "Trust Instinct",
-  "Golden Hour",
-  "Keep Moving",
-  "Frame It",
-  "No Filter",
-  "Stay Sharp",
-  "Capture More",
+  "Kinetic",
+  "Dynamic Flow",
+  "Momentum",
+  "Fluid Motion",
+  "Active Canvas",
+  "Agile",
+  "Shape Energy",
+  "Elevate",
+  "Creative Drive",
+  "Catalyst",
+  "Inspire",
+  "Empower",
+  "Dynamic Vision",
 ];
 
-const GRID_GAP = 56; // px between grid points at rest
-const INFLUENCE = 190; // px radius the pointer warps
-const MAX_DISPLACE = 20; // px max a point is pushed
+const GRID_GAP = 36; // px between grid points at rest
+const INFLUENCE = 440; // px radius the pointer warps — a wide lens, like the reference
+const MAX_DISPLACE = 34; // px max a point is pushed outward at the centre
 const EASE = 0.12; // how quickly points settle toward their target each frame
 const WORD_DISTANCE = 100; // px the pointer must travel before a new word can appear
 const WORD_COOLDOWN = 650; // ms minimum between words even if moving fast
@@ -76,8 +77,14 @@ export function InteractiveGrid() {
       }
     };
 
+    const staticOnly = reduceMotion || !finePointer;
+
     buildGrid();
-    const resizeObserver = new ResizeObserver(buildGrid);
+    // Resizing clears the canvas, so the static fallback has to redraw itself.
+    const resizeObserver = new ResizeObserver(() => {
+      buildGrid();
+      if (staticOnly) paint();
+    });
     resizeObserver.observe(wrapper);
 
     const pointer = { x: -9999, y: -9999, active: false };
@@ -124,10 +131,49 @@ export function InteractiveGrid() {
     section.addEventListener("pointermove", onMove);
     section.addEventListener("pointerleave", onLeave);
 
+    // Squares plus both diagonals, so the mesh reads as a web rather than graph paper.
+    const paint = () => {
+      ctx.clearRect(0, 0, width, height);
+      ctx.lineWidth = 1;
+
+      ctx.strokeStyle = "rgba(244, 244, 239, 0.20)";
+      ctx.beginPath();
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const i = r * cols + c;
+          const p = points[i];
+          if (c < cols - 1) {
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(points[i + 1].x, points[i + 1].y);
+          }
+          if (r < rows - 1) {
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(points[i + cols].x, points[i + cols].y);
+          }
+        }
+      }
+      ctx.stroke();
+
+      ctx.strokeStyle = "rgba(244, 244, 239, 0.11)";
+      ctx.beginPath();
+      for (let r = 0; r < rows - 1; r++) {
+        for (let c = 0; c < cols - 1; c++) {
+          const i = r * cols + c;
+          const p = points[i];
+          const right = points[i + 1];
+          const down = points[i + cols];
+          const diag = points[i + cols + 1];
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(diag.x, diag.y);
+          ctx.moveTo(right.x, right.y);
+          ctx.lineTo(down.x, down.y);
+        }
+      }
+      ctx.stroke();
+    };
+
     let raf = 0;
     const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-
       for (const p of points) {
         let tx = p.hx;
         let ty = p.hy;
@@ -147,51 +193,13 @@ export function InteractiveGrid() {
         p.y += (ty - p.y) * EASE;
       }
 
-      ctx.strokeStyle = "rgba(244, 244, 239, 0.14)";
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const i = r * cols + c;
-          const p = points[i];
-          if (c < cols - 1) {
-            const right = points[i + 1];
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(right.x, right.y);
-          }
-          if (r < rows - 1) {
-            const down = points[i + cols];
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(down.x, down.y);
-          }
-        }
-      }
-      ctx.stroke();
-
+      paint();
       raf = requestAnimationFrame(draw);
     };
 
-    if (reduceMotion || !finePointer) {
+    if (staticOnly) {
       // Draw one static frame instead of looping every frame.
-      ctx.clearRect(0, 0, width, height);
-      ctx.strokeStyle = "rgba(244, 244, 239, 0.14)";
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const i = r * cols + c;
-          const p = points[i];
-          if (c < cols - 1) {
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(points[i + 1].x, points[i + 1].y);
-          }
-          if (r < rows - 1) {
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(points[i + cols].x, points[i + cols].y);
-          }
-        }
-      }
-      ctx.stroke();
+      paint();
     } else {
       raf = requestAnimationFrame(draw);
     }
@@ -211,7 +219,7 @@ export function InteractiveGrid() {
       <span
         ref={wordRef}
         aria-hidden
-        className="absolute z-10 font-mono text-xs tracking-[0.3em] text-coral uppercase opacity-0 transition-[opacity,transform] duration-500 ease-out"
+        className="absolute z-10 font-mono text-xs font-semibold tracking-[0.3em] whitespace-nowrap text-paper uppercase opacity-0 transition-[opacity,transform] duration-500 ease-out"
       />
     </div>
   );
