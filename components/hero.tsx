@@ -54,6 +54,14 @@ function Line({
   );
 }
 
+function PinIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className={className} fill="currentColor">
+      <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
+    </svg>
+  );
+}
+
 function Asterisk({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 100 100" aria-hidden className={className} fill="currentColor">
@@ -140,8 +148,11 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: d + 0.7, duration: 0.8, ease }}
             >
-              <li>Creative photographer</li>
-              <li>Amateur videographer</li>
+              <li>
+                Kolkata
+                <PinIcon className="ml-1 inline-block size-3 align-[-0.15em] text-coral" />
+                , 22 Yrs
+              </li>
               <li>Based in {site.location}</li>
             </motion.ul>
           </div>

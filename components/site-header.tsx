@@ -51,9 +51,9 @@ export function SiteHeader() {
             e.preventDefault();
             goTo("#top");
           }}
-          className="font-heading text-sm font-semibold tracking-[0.4em] text-paper uppercase md:text-base"
+          className="font-heading text-lg font-semibold tracking-tighter text-paper uppercase md:text-xl"
         >
-          Z R
+          ZR
         </a>
 
         <nav aria-label="Primary" className="ml-auto hidden w-1/2 justify-between pr-12 md:flex">

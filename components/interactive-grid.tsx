@@ -19,12 +19,12 @@ const WORDS = [
   "Dynamic Vision",
 ];
 
-const GRID_GAP = 36; // px between grid points at rest
+const GRID_GAP = 30; // px between grid points at rest
 const INFLUENCE = 440; // px radius the pointer warps — a wide lens, like the reference
-const MAX_DISPLACE = 34; // px max a point is pushed outward at the centre
+const MAX_DISPLACE = 58; // px max a point is pushed outward at the centre
 const EASE = 0.12; // how quickly points settle toward their target each frame
-const WORD_DISTANCE = 100; // px the pointer must travel before a new word can appear
-const WORD_COOLDOWN = 650; // ms minimum between words even if moving fast
+const WORD_DISTANCE = 55; // px the pointer must travel before a new word can appear
+const WORD_COOLDOWN = 220; // ms minimum between words even if moving fast
 
 type Point = { hx: number; hy: number; x: number; y: number };
 
@@ -113,7 +113,7 @@ export function InteractiveGrid() {
       hideTimer = setTimeout(() => {
         wordEl.style.opacity = "0";
         wordEl.style.transform = "translate(-50%, 6px) scale(0.92)";
-      }, 900);
+      }, 560);
     };
 
     const onMove = (e: PointerEvent) => {
@@ -136,7 +136,7 @@ export function InteractiveGrid() {
       ctx.clearRect(0, 0, width, height);
       ctx.lineWidth = 1;
 
-      ctx.strokeStyle = "rgba(244, 244, 239, 0.20)";
+      ctx.strokeStyle = "rgba(244, 244, 239, 0.22)";
       ctx.beginPath();
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
@@ -154,7 +154,7 @@ export function InteractiveGrid() {
       }
       ctx.stroke();
 
-      ctx.strokeStyle = "rgba(244, 244, 239, 0.11)";
+      ctx.strokeStyle = "rgba(244, 244, 239, 0.17)";
       ctx.beginPath();
       for (let r = 0; r < rows - 1; r++) {
         for (let c = 0; c < cols - 1; c++) {
@@ -219,7 +219,7 @@ export function InteractiveGrid() {
       <span
         ref={wordRef}
         aria-hidden
-        className="absolute z-10 font-mono text-xs font-semibold tracking-[0.3em] whitespace-nowrap text-paper uppercase opacity-0 transition-[opacity,transform] duration-500 ease-out"
+        className="absolute z-10 font-mono text-xs font-semibold tracking-[0.3em] whitespace-nowrap text-paper uppercase opacity-0 transition-[opacity,transform] duration-150 ease-out"
       />
     </div>
   );
