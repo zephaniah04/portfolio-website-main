@@ -2,13 +2,21 @@
 
 Guidance for Claude Code when working in this repository.
 
+@AGENTS.md
+
+## What this is
+
+Personal portfolio for **Zephaniah Raika**, a creative photographer and amateur videographer who also does design and fitness. It's a single-page site with a dark background, bright accent colors, big display type, and heavy motion. The visual reference is https://spector.framer.website/.
+
 ## Tech stack
 
-- **Framework:** Next.js (App Router, `app/` directory)
+- **Framework:** Next.js 16 (App Router, `app/` directory, Turbopack, `cacheComponents` on)
 - **Language:** TypeScript (strict mode)
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS v4. Theme tokens live in `@theme` in `app/globals.css`, and there is no `tailwind.config`.
+- **Animation:** [Motion](https://motion.dev) (`motion/react`) for all animation, plus [Lenis](https://lenis.darkroom.engineering) (`lenis/react`) for smooth scrolling
+- **Fonts (next/font/google):** Anton (display), Geist (body), Geist Mono (labels), Noto Sans JP (Japanese accents)
 - **Package manager:** npm
-- **Linting/formatting:** ESLint (`next/core-web-vitals`) + Prettier
+- **Linting:** ESLint flat config (`eslint-config-next`)
 - **Hosting:** Vercel
 
 ## Commands
@@ -16,38 +24,63 @@ Guidance for Claude Code when working in this repository.
 ```bash
 npm install        # install dependencies
 npm run dev        # start dev server at http://localhost:3000
-npm run build      # production build
+npm run build      # production build (also type-checks)
 npm run start      # serve the production build
-npm run lint       # run ESLint
+npm run lint       # run ESLint (next build no longer lints)
 ```
 
-Run `npm run lint` and `npm run build` before committing to catch type and lint errors.
+Run `npm run lint` and `npm run build` before committing.
 
 ## Project structure
 
 ```
-app/             # routes, layouts, pages (App Router)
-  layout.tsx     # root layout
-  page.tsx       # home page
-components/      # reusable UI components
-lib/             # utilities, helpers, data fetching
-public/          # static assets (images, icons, fonts)
+app/
+  layout.tsx          # fonts, <SmoothScroll>, custom <Cursor>
+  page.tsx            # assembles the page sections in order
+  globals.css         # theme tokens, grain overlay, outline text, Lenis CSS
+components/
+  preloader.tsx       # 0→100% intro; exports INTRO_DELAY used by hero/header
+  site-header.tsx     # logo + hamburger → full-screen menu
+  hero.tsx            # name letter reveal, photo, scroll parallax
+  velocity-marquee.tsx# marquee whose speed follows scroll velocity
+  services.tsx        # Photography / Videography / Design rows
+  work-gallery.tsx    # pinned horizontal-scroll gallery
+  about.tsx           # scroll-lit paragraph, counters
+  journal.tsx         # Finance / Blog / Fitness tilt cards (menu targets)
+  contact-footer.tsx  # lime footer with CTA
+  reveal.tsx          # Reveal, MaskText, SectionLabel helpers
+  smooth-scroll.tsx, cursor.tsx
+lib/
+  content.ts          # ALL site copy, links, images; edit text here
+public/images/        # profile.jpg + work/*.jpg (placeholders; replace freely)
 ```
+
+## Design system
+
+- Background is near-black `ink` (#050505), and text is off-white `paper` (#f4f4ef).
+- Accents are `lime` (#d4ff3a, primary), `orange` (#ff5a1f), `pink` (#ff3d9a) and `blue` (#3d7bff). Use them as Tailwind colors (`bg-lime`, `text-orange`, …), never as raw hex values in components.
+- Headlines use `font-display` in uppercase, sized in `vw` so they span the viewport. Labels use `font-mono text-[11px] tracking-widest uppercase`.
+- Japanese accent words use `font-jp`.
+- Use `.text-outline` (or `.text-outline-ink` on light backgrounds) for outlined display text.
+- Custom cursor: put `data-cursor="Label"` on any element to show a labelled cursor bubble on hover.
 
 ## Code style
 
-- Use TypeScript everywhere; avoid `any`. Prefer `type` for props and unions, `interface` only when extending.
-- Function components only. Name components in `PascalCase`, files in `kebab-case.tsx` (e.g. `components/site-header.tsx`).
-- Default to **Server Components**; add `"use client"` only when a component needs state, effects, or browser APIs.
-- Use named exports for components; default exports only where Next.js requires them (`page.tsx`, `layout.tsx`, etc.).
-- Style with Tailwind utility classes. Avoid inline `style` props and separate CSS files except for `app/globals.css`.
-- Use `next/image` for images and `next/link` for internal links.
-- Use the `@/` import alias for project-root imports (e.g. `import { Button } from "@/components/button"`).
-- Prettier defaults: 2-space indent, double quotes, semicolons, trailing commas.
-- Keep components small and focused; extract shared logic into `lib/`.
-- Write accessible markup: semantic HTML, `alt` text on images, labels on form inputs.
+- Use TypeScript everywhere and avoid `any`. Prefer `type` over `interface`.
+- Function components only. Use PascalCase for component names, kebab-case filenames, and named exports. Default exports only where Next.js requires them (`page.tsx`, `layout.tsx`).
+- Default to Server Components. Add `"use client"` only for components that need state, effects, Motion, or Lenis.
+- Keep copy and data in `lib/content.ts`, not hardcoded in components.
+- Animate with Motion (`motion.*`, `useScroll`, `useTransform`, `whileInView`). Don't add GSAP or other animation libraries.
+- Use the shared easing `[0.76, 0, 0.24, 1]` for big reveals and `[0.22, 1, 0.36, 1]` for softer fades.
+- Scroll programmatically with `useLenis()` and `lenis.scrollTo(...)`, not `window.scrollTo`.
+- Don't call `setState` synchronously inside `useEffect`, because the lint rule `react-hooks/set-state-in-effect` blocks it. Use `useSyncExternalStore` for browser values.
+- `whileInView` never fires on an element that is fully clipped by an `overflow-hidden` parent, so observe the parent and drive the child with variants (see `MaskText`).
+- Use Tailwind canonical classes (`z-100`, `aspect-4/5`, not `z-[100]`, `aspect-[4/5]`).
+- Use `next/image` for every image. Images live in `public/images/`.
+- Accessibility: use semantic HTML, `alt` text, `aria-*` on the menu toggle, and keyboard Escape to close the menu.
+- Prettier-style formatting: 2-space indent, double quotes, semicolons, trailing commas.
 
 ## Git
 
-- Small, focused commits with imperative messages (e.g. "Add contact form").
+- Make small, focused commits with imperative messages (e.g. "Add contact form").
 - Never commit `.env*` files or secrets.
