@@ -48,7 +48,6 @@ function TiltCard({ entry, index }: { entry: JournalEntry; index: number }) {
           >
             {entry.label}
           </span>
-          <span className="font-jp absolute top-4 right-4 text-sm text-paper/80">{entry.jp}</span>
         </div>
         <div className="flex flex-col gap-3 p-6" style={{ transform: "translateZ(40px)" }}>
           <h3 className="font-display text-3xl uppercase md:text-4xl">{entry.title}</h3>
@@ -73,7 +72,7 @@ function TiltCard({ entry, index }: { entry: JournalEntry; index: number }) {
 export function Journal() {
   return (
     <section id="journal" className="relative px-4 py-24 md:px-8 md:py-40">
-      <SectionLabel index="04" label="Journal" jp="日誌" />
+      <SectionLabel index="04" label="Journal" />
 
       <div className="mb-12 flex flex-col justify-between gap-6 md:mb-20 md:flex-row md:items-end">
         <h2 className="font-display text-[13vw] leading-[0.9] uppercase md:text-[8vw]">

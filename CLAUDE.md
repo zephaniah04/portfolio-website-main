@@ -14,7 +14,7 @@ Personal portfolio for **Zephaniah Raika**, a creative photographer and amateur 
 - **Language:** TypeScript (strict mode)
 - **Styling:** Tailwind CSS v4. Theme tokens live in `@theme` in `app/globals.css`, and there is no `tailwind.config`.
 - **Animation:** [Motion](https://motion.dev) (`motion/react`) for all animation, plus [Lenis](https://lenis.darkroom.engineering) (`lenis/react`) for smooth scrolling
-- **Fonts (next/font/google):** Anton (display), Geist (body), Geist Mono (labels), Noto Sans JP (Japanese accents)
+- **Fonts (next/font/google):** Anton (display), Inter Tight (hero / header headings), Geist (body), Geist Mono (labels)
 - **Package manager:** npm
 - **Linting:** ESLint flat config (`eslint-config-next`)
 - **Hosting:** Vercel
@@ -41,7 +41,7 @@ app/
 components/
   preloader.tsx       # 0→100% intro; exports INTRO_DELAY used by hero/header
   site-header.tsx     # logo + hamburger → full-screen menu
-  hero.tsx            # name letter reveal, photo, scroll parallax
+  hero.tsx            # Spector-style: full-bleed photo + grid, name, discipline list, big statement
   velocity-marquee.tsx# marquee whose speed follows scroll velocity
   services.tsx        # Photography / Videography / Design rows
   work-gallery.tsx    # pinned horizontal-scroll gallery
@@ -52,7 +52,7 @@ components/
   smooth-scroll.tsx, cursor.tsx
 lib/
   content.ts          # ALL site copy, links, images; edit text here
-public/images/        # profile.jpg + work/*.jpg (placeholders; replace freely)
+public/images/        # hero.jpg (landscape bg), profile.jpg, work/*.jpg (placeholders; replace freely)
 ```
 
 ## Design system
@@ -60,7 +60,8 @@ public/images/        # profile.jpg + work/*.jpg (placeholders; replace freely)
 - Background is near-black `ink` (#050505), and text is off-white `paper` (#f4f4ef).
 - Accents are `lime` (#d4ff3a, primary), `orange` (#ff5a1f), `pink` (#ff3d9a) and `blue` (#3d7bff). Use them as Tailwind colors (`bg-lime`, `text-orange`, …), never as raw hex values in components.
 - Headlines use `font-display` in uppercase, sized in `vw` so they span the viewport. Labels use `font-mono text-[11px] tracking-widest uppercase`.
-- Japanese accent words use `font-jp`.
+- Hero and header headings use `font-heading` (Inter Tight, semibold/bold, tight negative tracking).
+- No Japanese or other non-English accent text; the owner asked for it to be removed.
 - Use `.text-outline` (or `.text-outline-ink` on light backgrounds) for outlined display text.
 - Custom cursor: put `data-cursor="Label"` on any element to show a labelled cursor bubble on hover.
 

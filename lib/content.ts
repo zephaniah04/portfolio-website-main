@@ -7,8 +7,9 @@ export const site = {
   role: "Creative Photographer & Amateur Videographer",
   email: "hello@zephaniahraika.com",
   location: "India",
-  // Replace public/images/profile.jpg with your own photo (portrait, ~3:4).
-  photo: "/images/profile.jpg",
+  // Replace these files with your own photos.
+  heroImage: "/images/hero.jpg", // full-screen first page background, landscape
+  photo: "/images/profile.jpg", // portrait (~3:4) used in About
 };
 
 export type Accent = "lime" | "orange" | "pink" | "blue";
@@ -24,11 +25,9 @@ export type Service = {
   id: string;
   number: string;
   title: string;
-  jp: string;
   level: string;
   description: string;
   tags: string[];
-  image: string;
   accent: Accent;
 };
 
@@ -37,36 +36,30 @@ export const services: Service[] = [
     id: "photography",
     number: "01",
     title: "Photography",
-    jp: "写真",
     level: "Creative",
     description:
       "Portraits, streets, events and products, shot with an eye for light, mood and the moment in between.",
     tags: ["Portraits", "Street", "Events", "Products"],
-    image: "/images/work/01.jpg",
     accent: "lime",
   },
   {
     id: "videography",
     number: "02",
     title: "Videography",
-    jp: "映像",
     level: "Amateur",
     description:
       "Short films, reels and behind-the-scenes edits. Learning every frame, telling stories in motion.",
     tags: ["Reels", "Short Films", "BTS", "Editing"],
-    image: "/images/work/02.jpg",
     accent: "orange",
   },
   {
     id: "design",
     number: "03",
     title: "Design",
-    jp: "デザイン",
     level: "Visual",
     description:
       "Posters, social graphics and visual identities that carry the same eye I bring behind the lens.",
     tags: ["Posters", "Social", "Branding", "Layouts"],
-    image: "/images/work/03.jpg",
     accent: "pink",
   },
 ];
@@ -97,7 +90,6 @@ export const stats = [
 export type JournalEntry = {
   id: string;
   label: string;
-  jp: string;
   title: string;
   excerpt: string;
   image: string;
@@ -109,7 +101,6 @@ export const journal: JournalEntry[] = [
   {
     id: "finance",
     label: "Finance",
-    jp: "お金",
     title: "Money as a creative",
     excerpt:
       "How I budget gear, price shoots and manage irregular income as a freelancer.",
@@ -119,7 +110,6 @@ export const journal: JournalEntry[] = [
   {
     id: "blog",
     label: "Blog",
-    jp: "日記",
     title: "Notes from the field",
     excerpt:
       "Stories behind the shots, editing breakdowns and lessons from every project.",
@@ -129,7 +119,6 @@ export const journal: JournalEntry[] = [
   {
     id: "fitness",
     label: "Fitness",
-    jp: "鍛錬",
     title: "Discipline in & out",
     excerpt:
       "Training logs, routines and how staying fit keeps me sharp behind the camera.",

@@ -44,7 +44,7 @@ export function Preloader() {
         >
           <div className="flex justify-between font-mono text-xs tracking-widest text-mute uppercase">
             <span>Zephaniah Raika</span>
-            <span className="font-jp">写真家</span>
+            <span>Portfolio ©2026</span>
           </div>
           <div className="flex items-end justify-between">
             <span className="font-mono text-xs tracking-widest text-mute uppercase">

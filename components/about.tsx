@@ -106,7 +106,7 @@ export function About() {
 
   return (
     <section id="about" className="relative px-4 py-24 md:px-8 md:py-40">
-      <SectionLabel index="03" label="About me" jp="私について" />
+      <SectionLabel index="03" label="About me" />
 
       <ScrollParagraph />
 

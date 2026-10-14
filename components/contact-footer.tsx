@@ -24,7 +24,7 @@ export function ContactFooter() {
       <div className="px-4 pt-20 md:px-8 md:pt-32">
         <div className="flex items-center justify-between font-mono text-[11px] tracking-widest uppercase">
           <span>(05) Contact</span>
-          <span className="font-jp">連絡</span>
+          <span>Let&apos;s talk</span>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ export function ContactFooter() {
 
       <div className="flex flex-col gap-4 border-t border-ink/20 px-4 py-6 font-mono text-[11px] tracking-widest uppercase md:flex-row md:items-center md:justify-between md:px-8">
         <span>© 2026 {site.name}</span>
-        <span className="font-jp">ゼファニア・ライカ</span>
+        <span>Photography · Videography · Design</span>
         <button
           type="button"
           onClick={() => lenis?.scrollTo(0, { duration: 2 })}

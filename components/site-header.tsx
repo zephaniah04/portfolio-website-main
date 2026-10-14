@@ -8,6 +8,13 @@ import { menuLinks, site, socials } from "@/lib/content";
 
 const ease = [0.76, 0, 0.24, 1] as const;
 
+const navLinks = [
+  { label: "Work", href: "#work" },
+  { label: "About", href: "#about" },
+  { label: "Journal", href: "#journal" },
+  { label: "Contact", href: "#contact" },
+];
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const lenis = useLenis();
@@ -44,18 +51,27 @@ export function SiteHeader() {
             e.preventDefault();
             goTo("#top");
           }}
-          className="font-display text-xl tracking-wide text-paper uppercase md:text-2xl"
+          className="font-heading text-sm font-semibold tracking-[0.4em] text-paper uppercase md:text-base"
         >
-          Z<span className="text-lime">.</span>Raika
+          Zephaniah<sup className="ml-0.5 text-[0.7em] tracking-normal">✳</sup>
         </a>
 
-        <div className="hidden items-center gap-2 font-mono text-xs tracking-widest text-paper uppercase md:flex">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-lime opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-lime" />
-          </span>
-          Available for shoots
-        </div>
+        <nav aria-label="Primary" className="ml-auto hidden w-1/2 justify-between pr-12 md:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                goTo(link.href);
+              }}
+              className="group relative font-heading text-base font-semibold tracking-tight text-paper"
+            >
+              {link.label}
+              <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-paper transition-transform duration-500 group-hover:origin-left group-hover:scale-x-100" />
+            </a>
+          ))}
+        </nav>
 
         <button
           type="button"

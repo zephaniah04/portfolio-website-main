@@ -49,16 +49,15 @@ export function MaskText({ children, delay = 0, className }: RevealProps) {
 type SectionLabelProps = {
   index: string;
   label: string;
-  jp: string;
 };
 
-export function SectionLabel({ index, label, jp }: SectionLabelProps) {
+export function SectionLabel({ index, label }: SectionLabelProps) {
   return (
     <Reveal className="mb-10 flex items-center justify-between border-t border-line pt-4 font-mono text-[11px] tracking-widest text-mute uppercase md:mb-16">
       <span>
         ({index}) {label}
       </span>
-      <span className="font-jp">{jp}</span>
+      <span>Zephaniah Raika ©2026</span>
     </Reveal>
   );
 }

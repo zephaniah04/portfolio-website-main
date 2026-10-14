@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Geist, Geist_Mono, Noto_Sans_JP } from "next/font/google";
+import { Anton, Geist, Geist_Mono, Inter_Tight } from "next/font/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Cursor } from "@/components/cursor";
 import "./globals.css";
@@ -20,10 +20,10 @@ const anton = Anton({
   subsets: ["latin"],
 });
 
-const notoJp = Noto_Sans_JP({
-  variable: "--font-noto-jp",
-  weight: ["400", "700"],
-  preload: false,
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
+  weight: ["500", "600", "700"],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${anton.variable} ${notoJp.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${anton.variable} ${interTight.variable} antialiased`}
     >
       <body className="grain overflow-x-clip font-sans">
         <SmoothScroll>{children}</SmoothScroll>

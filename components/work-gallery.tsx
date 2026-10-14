@@ -43,7 +43,7 @@ export function WorkGallery() {
       <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden">
         <div className="flex items-center justify-between px-4 pb-6 font-mono text-[11px] tracking-widest uppercase md:px-8">
           <span>(02) Selected Work</span>
-          <span className="font-jp">作品集</span>
+          <span>Scroll →</span>
         </div>
 
         <motion.div ref={trackRef} style={{ x }} className="flex w-max items-center gap-4 px-4 md:gap-8 md:px-8">
