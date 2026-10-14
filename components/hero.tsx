@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
+import { InteractiveGrid } from "@/components/interactive-grid";
 import { INTRO_DELAY } from "@/components/preloader";
 import { site } from "@/lib/content";
 
@@ -105,7 +106,9 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: d + 0.4, duration: 1.5 }}
-      />
+      >
+        <InteractiveGrid />
+      </motion.div>
 
       <motion.div
         style={{ y: contentY, opacity: fade }}
@@ -121,8 +124,8 @@ export function Hero() {
               transition={{ delay: d + 0.3, duration: 0.6 }}
             >
               <span className="flex">
-                <span className="size-3 rounded-full bg-lime" />
-                <span className="-ml-1 size-3 rounded-full border-2 border-lime" />
+                <span className="size-3 rounded-full bg-coral" />
+                <span className="-ml-1 size-3 rounded-full border-2 border-coral" />
               </span>
               Portfolio ©2026
             </motion.div>
@@ -150,11 +153,11 @@ export function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: d + 0.5, duration: 0.6 }}
             >
-              <span className="text-lime">+</span> Z.R—26
+              <span className="text-coral">+</span> Z.R—26
             </motion.span>
             <div className="relative pl-4">
               <motion.span
-                className="absolute top-0 left-0 h-full w-px origin-top bg-lime"
+                className="absolute top-0 left-0 h-full w-px origin-top bg-coral"
                 initial={{ scaleY: 0 }}
                 animate={{ scaleY: 1 }}
                 transition={{ delay: d + 0.5, duration: 1, ease }}
@@ -164,7 +167,7 @@ export function Hero() {
                   <li key={item} className="overflow-hidden">
                     <motion.a
                       href={i < 3 ? "#services" : "#fitness"}
-                      className="inline-block transition-colors duration-300 hover:text-lime"
+                      className="inline-block transition-colors duration-300 hover:text-coral"
                       initial={{ y: "110%" }}
                       animate={{ y: 0 }}
                       transition={{ delay: d + 0.6 + i * 0.08, duration: 0.8, ease }}
@@ -179,12 +182,12 @@ export function Hero() {
         </div>
 
         {/* Big statement */}
-        <div className="mt-16 flex items-end justify-between gap-6">
+        <div className="mt-10 mb-8 flex items-end justify-between gap-6 md:mt-16 md:mb-14">
           <p
             aria-hidden
-            className="font-heading text-[9.5vw] leading-[0.9] font-bold tracking-[-0.055em] uppercase md:text-[7.2vw]"
+            className="font-heading text-[10.5vw] leading-[0.88] font-bold tracking-[-0.055em] uppercase md:text-[8vw]"
           >
-            <Line delay={d + 0.35} className="flex items-start gap-[0.15em] text-lime">
+            <Line delay={d + 0.35} className="flex items-start gap-[0.15em] text-coral">
               Creative
               <motion.span
                 className="inline-block w-[0.55em] pt-[0.05em]"
@@ -203,7 +206,7 @@ export function Hero() {
             </Line>
             <Line
               delay={d + 0.45}
-              className="bg-linear-to-b from-lime via-[#eaf7b0] to-paper bg-clip-text text-transparent"
+              className="bg-linear-to-b from-coral via-[#ffd9cc] to-paper bg-clip-text text-transparent"
             >
               Photographer &amp;
             </Line>
@@ -234,7 +237,7 @@ export function Hero() {
       {/* Book-a-shoot chip, bottom right */}
       <motion.a
         href="#contact"
-        className="absolute right-4 bottom-6 z-20 hidden items-center gap-3 rounded-lg border border-paper/15 bg-ink/70 p-2 pr-4 backdrop-blur-md transition-colors hover:border-lime md:right-20 md:bottom-8 md:flex"
+        className="absolute right-4 bottom-6 z-20 hidden items-center gap-3 rounded-lg border border-paper/15 bg-ink/70 p-2 pr-4 backdrop-blur-md transition-colors hover:border-coral md:right-20 md:bottom-8 md:flex"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: d + 1.3, duration: 0.8, ease }}
