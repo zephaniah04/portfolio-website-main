@@ -53,7 +53,7 @@ export function SiteHeader() {
           }}
           className="font-heading text-sm font-semibold tracking-[0.4em] text-paper uppercase md:text-base"
         >
-          Zephaniah<sup className="ml-0.5 text-[0.7em] tracking-normal">✳</sup>
+          Z R
         </a>
 
         <nav aria-label="Primary" className="ml-auto hidden w-1/2 justify-between pr-12 md:flex">
